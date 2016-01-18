@@ -1,0 +1,45 @@
+
+\section{Materials selection for engineering design}
+
+Identifying a material to fit a specific use case, requiring the satisfaction of multiple intrinsic property and compatibility constraints, is a core problem in engineering design. 
+While significant effort is being directed at green field discovery of new materials, it is crucial not to neglect the problem of selecting optimal solutions from within the known space. 
+Not every new application requires a radically new material, and over the past five decades a large number of alloys, composites, and polymer materials have been developed and integrated into engineering products. 
+Engineers have and continue to find value in existing materials by exploiting commonalities between ostensibly disparate use cases, where it is the unique combination of properties that distinguishes the winning material, not necessarily record breaking performance in any individual aspect.
+Consider the superalloy Inconel (625), originally developed as a structural material for supercritical steam power plants\cite{Eiselstein1991}, a superbly strong and corrosion-resistant alloy, which was introduced this year into the battery contacts of the Tesla\textsuperscript{\textregistered} Model S to take advantage of its stress response at the extreme temperatures that result from resistive heating of the contact during rapid acceleration\cite{Musk2015}.
+Or take the example of poly(ethylene-vinyl acetate), a copolymer thermoplastic, which was selected as the matrix material for the NuvaRing\cite{Sarkar2005} for the same combination of mechanical properties that led Crocs\textsuperscript{\texttrademark} to embrace PEVA, in the form of Croslite foam, as the primary structural component of their trademark footwear. 
+Examples of cross-pollination between disciplines and product classes are rare and can be quite surprising, but given the overlap in design considerations one wonders why it cannot be more commonplace. 
+Exploiting commonalities in engineering requirements across domains will become only more critical in the future if continued investment in ICME modeling and informatics succeeds in accelerating the rate of materials discovery. 
+
+\subsection{Materials selection as Multi-objective optimization}
+In the context of statistical modeling and optimization, the task of materials selection can be recast as an inverse problem: given the massive catalog of characterized materials, identify a subset of those materials that meet a set of desirable property conditions.
+Formally, want to identify the subset of materials that represent as close an approximation as is available to the Pareto front\cite{Sirisalee2004,Fonseca1993}, the surface over which which any incremental improvement in one material property is attended by the commensurate reduction of another. 
+Further selection from this set can be made by constructing a scalar-valued fitness function with penalties associated with each property tradeoff (e.g., a 10\% reduction in yield strength may be worth a 5\% increase in corrosion resistance), but the principle challenge is in sampling the pareto front.
+
+When the properties of interest are directly computable from the description ("genome") of a proposed material, as in alloy design using the ICME modeling framework, one can in principle generate candidates computationally without resorting to data mining (setting aside the need to parameterize the underlying models), converging on an estimate of the pareto optimal set using established methods such as differential evolution or similar strategies that have been shown to work well on this class of problem\cite{Zhang2015}.
+However, in many cases the properties of interest, such as corrosion resistance and aging for alloyed metals\cite{Konter2016}, are either too difficult or costly to compute using ICME. 
+The computational expense, combined with the threat of modeling approximations introducing critical prediction errors, have motivated a resurgence in the use of data-driven methods for statistical modeling popularly referred to as response surface modeling, or its vogue generalization machine learning\cite{Rajan2013,Agrawal2014,Suh2006,Jee2000}.
+These methods seek to learn a representation of the data that is able to accurately generalize to new materials or formulations. 
+Through this lens, material selection and optimization can be seen as tightly coupled problems: by modeling the properties of a large catalog of known input materials, one can rapidly screen and subsequently interpolate between previously characterized materials, providing a single platform with which to decide whether an existing material or derivative will meet a given set of engineering requirements.
+Arguments can, and have been\cite{Rajan2005,Hemanth2011}, made for the ability for this approach to generate truly novel scientific insights and guide discovery of new materials, but it is perhaps the incidental achievement of a platform that enables this kind of search that will have the most near term impact.
+
+\subsection{Platform Considerations}
+
+What would a successful platform for materials selection look like? 
+In answering this, it's useful to consider what features of traditional database systems render them inadequate to the task. 
+Most materials information, if structured at all, is stored in a relational database with a rigidly imposed schema to which each entry must conform.
+For a problem of extremely narrow scope, such a structure can be feasible, even ideal, but small changes to the original problem can precipitate large changes in the structure of the database.
+The eventual "materials genome" for describing metals, alloys, polymers, or nanocomposites, to name a small selection, will all be dramatically different from one another. 
+This may be addressed to a degree by adding tables to the database that each accommodate a separate material class, but the complexity of such a schema quickly results in a brittle architecture that performs poorly and cannot easily adapt to changing requirements. 
+This is a problem of high visibility in the field of information technology, and multiple solutions exist under the heading of so-called "NoSQL" databases that store data in machine parsable documents with no externally imposed schema\cite{Han2011,Kaur2013}.
+Of course, the added flexibility comes at cost. Specifically, by abandoning a strict schema for the underlying data store we lose the ability to answer questions from direct queries of the data. 
+Instead, all questions asked of an analytics platform fundamentally require a layer of computation between the data layer itself and the information of interest.  
+In the near term, a data platform with sufficient flexibility in storing the kaleidoscopic variety of materials data would provide a firm foundation upon which to build an analytics engine capable of answering the questions relevant to an engineering design problem.
+
+\begin{itemize}
+\item The opportunities in communicating across disciplines to identify existing solutions to transferable problems comes with challenges.
+\item In order to work on the level of abstraction necessary to compare materials across classes, we’ll need to find agreement on common transferable properties and be able to bootstrap models.
+\item A material genome for metals, alloys, and polymers will look quite different, but we can abstract the prediction of common properties (hardness, modulus, corrosion resistance, etc.) and screen on the outputs. 
+\item This analysis demands a flexible data infrastructure upon which such individual components may be built, stored, and combined.
+\item There are existing standards (ASTM, [?]), but further development is necessary. A single platform would aid this process by allowing standards to accrete.
+
+\end{itemize}
