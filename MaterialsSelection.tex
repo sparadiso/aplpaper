@@ -22,15 +22,15 @@ These methods seek to learn a representation of the data that is able to accurat
 Through this lens, material selection and optimization can be seen as tightly coupled problems: by modeling the properties of a large catalog of known input materials, one can rapidly screen and subsequently interpolate between previously characterized materials, providing a single platform with which to decide whether an existing material or derivative will meet a given set of engineering requirements.
 Arguments can, and have been\cite{Rajan2005,Hemanth2011}, made for the ability for this approach to generate truly novel scientific insights and guide discovery of new materials, but it is perhaps the incidental achievement of a platform that enables this kind of search that will have the most near term impact.
 
-\subsection{Platform Considerations}
+%\subsection{Platform Considerations}
 
-What would a successful platform for materials selection look like? 
-In answering this, it's useful to consider what features of traditional database systems render them inadequate to the task. 
-Most materials information, if structured at all, is stored in a relational database with a rigidly imposed schema to which each entry must conform.
-For a problem of extremely narrow scope, such a structure can be feasible, even ideal, but small changes to the original problem can precipitate large changes in the structure of the database.
-The eventual "materials genome" for describing metals, alloys, polymers, or nanocomposites, to name a small selection, will all be dramatically different from one another. 
-This may be addressed to a degree by adding tables to the database that each accommodate a separate material class, but the complexity of such a schema quickly results in a brittle architecture that performs poorly and cannot easily adapt to changing requirements. 
-This is a problem of high visibility in the field of information technology, and multiple solutions exist under the heading of so-called "NoSQL" databases that store data in machine parsable documents with no externally imposed schema\cite{Han2011,Kaur2013}.
-Of course, the added flexibility comes at cost. Specifically, by abandoning a strict schema for the underlying data store we lose the ability to answer questions from direct queries of the data. 
-Instead, all questions asked of an analytics platform fundamentally require a layer of computation between the data layer itself and the information of interest.  
-In the near term, a data platform with sufficient flexibility in storing the kaleidoscopic variety of materials data would provide a firm foundation upon which to build an analytics engine capable of answering the questions relevant to an engineering design problem.
+%What would a successful platform for materials selection look like? 
+%In answering this, it's useful to consider what features of traditional database systems render them inadequate to the task. 
+%Most materials information, if structured at all, is stored in a relational database with a rigidly imposed schema to which each entry must conform.
+%For a problem of extremely narrow scope, such a structure can be feasible, even ideal, but small changes to the original problem can precipitate large changes in the structure of the database.
+%The eventual "materials genome" for describing metals, alloys, polymers, or nanocomposites, to name a small selection, will all be dramatically different from one another. 
+%This may be addressed to a degree by adding tables to the database that each accommodate a separate material class, but the complexity of such a schema quickly results in a brittle architecture that performs poorly and cannot easily adapt to changing requirements. 
+%This is a problem of high visibility in the field of information technology, and multiple solutions exist under the heading of so-called "NoSQL" databases that store data in machine parsable documents with no externally imposed schema\cite{Han2011,Kaur2013}.
+%Of course, the added flexibility comes at cost. Specifically, by abandoning a strict schema for the underlying data store we lose the ability to answer questions from direct queries of the data. 
+%Instead, all questions asked of an analytics platform fundamentally require a layer of computation between the data layer itself and the information of interest.  
+%In the near term, a data platform with sufficient flexibility in storing the kaleidoscopic variety of materials data would provide a firm foundation upon which to build an analytics engine capable of answering the questions relevant to an engineering design problem.
