@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-cp ~/Documents/Bibtex/APLPaper-Used.bib ./APLPaper.bib
+cp ~/Documents/Bibtex/APLPaper.bib ./APLPaper.bib
